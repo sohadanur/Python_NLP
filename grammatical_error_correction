@@ -1,0 +1,24 @@
+#install the language_tool_python in the vscode terminal, google collab or command prompt. 
+#pip install language_tool_python
+import language_tool_python 
+ 
+def check_grammar(text): 
+    # Initialize the language tool 
+    tool = language_tool_python.LanguageTool('en-US') 
+     
+    # Check for grammatical errors 
+    matches = tool.check(text) 
+     
+    # Display errors and suggestions 
+    for match in matches: 
+        print(f"Error: {match.ruleId}, Message: {match.message}, Suggestion: {match.replacements}") 
+     
+    # Correct the text 
+    corrected_text = language_tool_python.utils.correct(text, matches) 
+     
+    return corrected_text 
+ 
+# Example usage 
+input_text = "She go to the store yesterday." 
+corrected = check_grammar(input_text) 
+print("Corrected Text:", corrected) 
